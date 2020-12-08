@@ -5,6 +5,7 @@
 Devmode using nodemon:
 ```
 git clone https://github.com/jmdtc/blog_api.git
+cd blog_api
 npm install
 npm start
 ```
