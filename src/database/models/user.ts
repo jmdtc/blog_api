@@ -53,7 +53,8 @@ export const initUser = async function (sequelize: Sequelize): Promise<void> {
       timestamps: false,
       sequelize,
     });
-    await User.sync({force: true});
+    await User.sync({force: true}); // resets and rewrites the db tables
+                                    // using for the sake of the easy installation, not for production
 
   } catch(err) {
     console.error(err)

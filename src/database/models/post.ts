@@ -54,7 +54,8 @@ export const initPost = async function (sequelize: Sequelize): Promise<void> {
       sequelize,
     });
 
-    await Post.sync({force: true})
+    await Post.sync({force: true}) // resets and rewrites the db tables
+                                   // using for the sake of the easy installation, not for production
 
   } catch(err) {
     console.error(err)
