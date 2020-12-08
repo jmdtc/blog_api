@@ -9,23 +9,23 @@ import errorHandler from "./middlewares/errorHandler";
 const app: express.Application = express();
 const PORT: number = Number(process.env.PORT) || 3000;
 
-app.use(express.json());
+setupDB().then(() => {
+  console.log("DB ready")
 
-(async () => {
-  await setupDB()
-})()
+  app.use(express.json());
 
-app.get("/", (req: Request, res: Response, next: NextFunction) => {
-  try {
-    res.send("Blog_api responding");
-  } catch (err) {
-    next(err)
-  }
-});
+  app.get("/", (req: Request, res: Response, next: NextFunction) => {
+    try {
+      res.send("Blog_api responding");
+    } catch (err) {
+      next(err)
+    }
+  });
 
-routes(app);
+  routes(app);
 
-app.use(errorHandler(app.get("env")));
-app.listen(PORT, () => {
-  return console.log(`server is listening on ${PORT}`);
-});
+  app.use(errorHandler(app.get("env")));
+  app.listen(PORT, () => {
+    return console.log(`server is listening on ${PORT}`);
+  });
+})
