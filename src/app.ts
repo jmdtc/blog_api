@@ -1,7 +1,4 @@
 import express, { Request, Response, NextFunction } from "express";
-import {
-  Sequelize,
-} from "sequelize";
 import setupDB from "./database/setupDB"
 import routes from "./routes/index"
 import errorHandler from "./middlewares/errorHandler";
